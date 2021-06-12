@@ -1,5 +1,5 @@
 <h1>Add Post</h1>
-<?php echo Form::open('/posts/add'); ?>
+<?php echo Form::open("/posts/edit/$post->id"); ?>
     <div class="form-group">
         <?php echo Form::label('Title', 'title'); ?>
         <?php echo Form::input([
@@ -7,12 +7,13 @@
             "value" => Input::post('title', isset($post) ? $post->title : ""),
             "class" => "form-control"
         ]); ?>
+        <?php echo Form::label('Title', 'title'); ?>
     </div>
     <div class="form-group">
         <?php echo Form::label('Category', 'category'); ?>
         <?php echo Form::select([
             "name" => "category",
-            "value" => "0",
+            "value" => $post->category,
             "options" => [
                 "0" => "カテゴリを選択してください",
                 "Web Design" => "Web Design",
@@ -39,6 +40,8 @@
         ]); ?>
     </div>
     
+    <?php echo Form::hidden("post_id", $post->id) ?>
+
     <div class="actions">
         <?php echo Form::submit([
             "name" => "send",

@@ -21,6 +21,25 @@
     * ※sqlファイルは、ファイル名のアルファベット順で実行される
     * 詳細: https://hub.docker.com/_/mysql
 
+### コマンド
+#### コンテナ（サービス）を強制的に作り直す
+```
+docker-compose up --force-recreate
+```
+* <span style="color:orange">`^` + `z` で docker-comose から離れて、ターミナルに戻れる（docker-compose は裏で動いている）</span>
+
+#### サービスを終了する
+```
+docker-compose down -v
+```
+* `-v` をつけることで、ボリュームも完全に削除してくれる
+
+#### 背後で動いている docker-compose のログを見る
+```
+docker-compose logs -f
+```
+* `^` + `z`　したときや、`-d` フラグをつけて docker-compose up したときに使える。
+
 ## fuelphp について
 ### Tutorial
 * part1

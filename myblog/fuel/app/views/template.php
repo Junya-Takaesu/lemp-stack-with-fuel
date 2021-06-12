@@ -34,6 +34,12 @@
 </head>
 
 <body>
+    <?php if(Session::get_flash("success")): ?>
+        <div class="alert alert-success"><?php echo Session::get_flash("success"); ?></div>
+    <?php endif; ?>
+    <?php if(Session::get_flash("error")): ?>
+        <div class="alert alert-error"><?php echo Session::get_flash("error"); ?></div>
+    <?php endif; ?>
 
     <div class="container">
         <header class="blog-header py-3">
@@ -41,8 +47,8 @@
                 <div class="col-3">
                     <a class="blog-header-logo text-dark" href="/">My Blog</a>
                 </div>
-                <div class="col-1 pt-1">
-                    <a class="link-secondary" href="#">Add</a>
+                <div class="col pt-1">
+                    <a class="btn btn-info" href="/posts/add">Add an article</a>
                 </div>
             </div>
         </header>
