@@ -59,6 +59,45 @@ docker-compose logs -f
     * `production`
     * `staging`
 
+### Session の設定・Session を使う
+* 基本知識
+  * Redis の Session クラスを使ってセッション管理する
+  * Session クラスの driver は redis を使う
+    * redis を使うことで通常のファイルでのセッションデータ保存は行わない。
+      * メリット＝＞ファイルロックの問題が解決する（同時アクセスが多発しても、遅延が起きない）
+* `session.php`
+  * `fuel/core/config/session.php` を `/fuel/app/config/session.php` にコピーして設定を書き換える
+  * `/fuel/app/config/session.php` の設定の一部を書き換える
+    * `driver`
+      * `cookie` -> `redis` に変更する
+      * session データを redis に保存するので。
+    * `cookie_http_only`
+        * `null` -> `true` に変更する
+        * なんとなく安全そう・・・ただのローカル開発環境だからどうでも良さそうだが。
+* `db.php`
+  * `fuel/app/config/development/db.php` に `redis` の設定を追加する
+    ```php
+    return(
+        "redis" => array(
+            "default" => [
+                "hostname" => "redis",
+                "port" => 6379,
+                "timeout" => null,
+                "database" => 0,
+                "integer" => 0,
+                "password" => null
+            ]
+        )
+    )
+    ```
+    * ここの `default` の設定と、`app/config/session.php` の `redis.datbase` の設定が対応する。
+    * docker-compose で `redis` サービスを定義しているので、`hostname` に `redis` を定義することで redis にアクセスできるようになる。
+* `Session` クラスを使う
+  ```php
+  Session::set("color", "red"); // color に red を設定する
+  Session::get("color"); // color の値を redis から取り出す -> red
+  ```
+
 ### ルーティング
 * `example.com/controller/action` が基本
   * `controller` と `action` の内容によって、ルーティング先が変わる

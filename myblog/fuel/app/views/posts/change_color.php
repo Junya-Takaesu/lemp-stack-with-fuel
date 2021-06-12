@@ -3,7 +3,7 @@
     <?php echo Form::label('Color', 'color'); ?>
     <?php echo Form::input([
         "name" => "color",
-        "value" => $_SESSION["color"],
+        "value" => Session::get("color"),
         "class" => "form-control"
     ]); ?>
     <div class="actions">

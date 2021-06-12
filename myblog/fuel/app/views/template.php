@@ -45,7 +45,7 @@
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-start align-items-center">
                 <div class="col-3">
-                    <a class="blog-header-logo text-dark" href="/" style="color: <?php echo $_SESSION["color"] ?> !important">My Blog</a>
+                    <a class="blog-header-logo text-dark" href="/" style="color: <?php echo Session::get("color") ?> !important">My Blog</a>
                 </div>
                 <div class="col pt-1">
                     <a class="btn btn-info" href="/posts/add">Add an article</a>

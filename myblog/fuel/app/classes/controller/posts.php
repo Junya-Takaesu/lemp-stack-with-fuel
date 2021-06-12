@@ -7,9 +7,8 @@ class Controller_Posts extends Controller_Template
     public function before()
     {
         parent::before();
-        session_start();
-        if(!isset($_SESSION["color"])) {
-            $_SESSION["color"] = "red";
+        if(!Session::get("color")) {
+            Session::set("color", "red");
         }
     }
 
@@ -98,7 +97,7 @@ class Controller_Posts extends Controller_Template
     public function action_change_color()
     {
         if (Input::post("send")) {
-            $_SESSION["color"] = Input::post("color");
+            Session::set("color", Input::post("color"));
             Response::redirect("/");
         }
 
