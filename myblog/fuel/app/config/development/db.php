@@ -28,4 +28,14 @@ return array(
 			'password' => 'password',
 		),
 	),
+	"redis" => array(
+		"default" => [
+			"hostname" => "redis",
+			"port" => 6379,
+			"timeout" => null,
+			"database" => 0,
+			"integer" => 0,
+			"password" => null
+		]
+	)
 );

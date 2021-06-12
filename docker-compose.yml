@@ -38,6 +38,10 @@ services:
       interval: 5s
       retries: 10
 
+  # Redis Service
+  redis:
+    image: "redis:alpine"
+
   # PhpMyAdmin Service
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
