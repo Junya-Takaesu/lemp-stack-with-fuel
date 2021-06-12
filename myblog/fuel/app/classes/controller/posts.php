@@ -4,6 +4,15 @@ use Fuel\Core\Controller_Template;
 
 class Controller_Posts extends Controller_Template
 {
+    public function before()
+    {
+        parent::before();
+        session_start();
+        if(!isset($_SESSION["color"])) {
+            $_SESSION["color"] = "red";
+        }
+    }
+
     public function action_index()
     {
         $posts = Model_Post::find("all");
@@ -84,5 +93,16 @@ class Controller_Posts extends Controller_Template
         Session::set_flash("success", "Post Deleted");
 
         Response::redirect("/");
+    }
+
+    public function action_change_color()
+    {
+        if (Input::post("send")) {
+            $_SESSION["color"] = Input::post("color");
+            Response::redirect("/");
+        }
+
+        $this->template->title = "Edit Post";
+        $this->template->content = View::forge("posts/change_color");
     }
 }
