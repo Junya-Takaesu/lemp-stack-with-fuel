@@ -1,8 +1,7 @@
-version: '3.8'
+version: "3.8"
 
 # Services
 services:
-
   # Nginx Service
   nginx:
     image: nginx:1.19
@@ -23,7 +22,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-  
+
   # MySQL Service
   mysql:
     image: mysql:8
@@ -50,6 +49,6 @@ services:
       mysql:
         condition: service_healthy
 
-# Volumes 
+# Volumes
 volumes:
   mysqldata:
