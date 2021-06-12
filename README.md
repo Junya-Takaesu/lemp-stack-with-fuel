@@ -3,7 +3,7 @@
 ## TODOs
 * [ ] db 接続設定ファイルを gitignore する
   * see: https://stackoverflow.com/questions/25436312/gitignore-not-working
-* [ ] session の保存に redis を使うようにする(lemp stack に追加する)
+* [x] session の保存に redis を使うようにする(lemp stack に追加する)
 
 ## LEMP stack (docker, docker-compose) について
 * 参考記事
