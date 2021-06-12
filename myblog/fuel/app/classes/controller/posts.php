@@ -38,16 +38,16 @@ class Controller_Posts extends Controller_Template
     public function action_view($id)
     {
         $post = Model_Post::find("first", array(
-        "where" => array(
-            "id" => $id
+            "where" => array(
+                "id" => $id
             )
         ));
-        
+
         $data = array("post" => $post);
         $this->template->title = $post->title;
         $this->template->content = View::forge('posts/view', $data, false);
     }
-        
+
     public function action_edit($id)
     {
         if (Input::post("send")) {
@@ -64,25 +64,25 @@ class Controller_Posts extends Controller_Template
 
             Response::redirect("/posts/view/$post->id");
         }
-        
+
         $post = Model_Post::find("first", array(
             "where" => array(
                 "id" => $id
             )
         ));
- 
+
         $data = array("post" => $post);
         $this->template->title = "Edit Post";
         $this->template->content = View::forge('posts/edit', $data, false);
     }
-    
+
     public function action_delete($id)
     {
         $post = Model_Post::find($id);
         $post->delete();
-        
+
         Session::set_flash("success", "Post Deleted");
-        
+
         Response::redirect("/");
     }
 }
